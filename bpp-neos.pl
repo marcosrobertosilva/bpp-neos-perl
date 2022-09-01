@@ -120,7 +120,7 @@ sub generate_bin_packing_problem
 
     # Constraint:
     # Explicitly say to the solvers that the variables 
-    # are integers, i.e., no factional value is allowed.
+    # are integers, i.e., no fractional value is allowed.
     $model .= "\nGenerals\n";
     for(my $bin = 1; $bin <= $n; $bin++)
     {
