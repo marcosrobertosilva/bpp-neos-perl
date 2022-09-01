@@ -39,21 +39,23 @@ sub run
 }
 #-------------------------------------------------------------------------------#
 #
-# Given a set of items I = {1,...,m} with weight w[i] > 0, the Bin
-# Packing Problem (BPP) is to pack the items into bins of capacity c
-# in such a way that the number of bins used is minimal.
+# Given a set of items I = {1,...,m} with weight w[i] > 0, 
+# the Bin Packing Problem (BPP) is to pack the items into 
+# bins of capacity c in such a way that the number of bins 
+# used is minimal.
 #
 # Extracted from GLPK distribution (https://www.gnu.org/software/glpk/)
 # Inspired in GNU MathProg version developed by Andrew Makhorin <mao@gnu.org>
 sub generate_bin_packing_problem
 {
     my $c = 100; # capacity of each bin
-    my $m = 6;   # number of items to pack
+    my $m = 6;   # number of items to pack (6 items)
     
     # weight of each item.
     my %w = (1 => 50, 2 => 60, 3 => 30, 4 => 70, 5 => 50, 6 => 40);
 
-    # "greedy" estimation of the upper bound in terms of the number of bins needed
+    # - "greedy" estimation of the upper bound in terms of 
+    # the number of bins needed
     my $accum = 0;
     my $n = 1; # upper bound of the number of bins needed.
     foreach my $item (keys %w)
@@ -89,8 +91,10 @@ sub generate_bin_packing_problem
         $model .= " = 1\n";
     }
 
-    # Respect the capacity of each bin, i.e., the sum of the weight put 
-    # in each bin must be lower than or equal to the bin capacity.
+    # Constraint:
+    # Respect the capacity of each bin, i.e., the sum of
+    # the weight put in each bin must be lower than or 
+    # equal to the bin capacity.
     for(my $bin = 1; $bin <= $n; $bin++)
     {
         $model .= " lim($bin):";
@@ -101,8 +105,10 @@ sub generate_bin_packing_problem
         $model .= " - $c used($bin) <= 0\n";
     }
     
-    # Define the bounds for each variable, in this case, all variables are binary,
-    # with lower bound equals to 0 and upper bound equals to 1.
+    # Constraint:
+    # Define the bounds for each variable, in this case, 
+    # all variables are binary, with lower bound equals 
+    # to 0 and upper bound equals to 1.
     $model .= "\nBounds\n";
     for(my $bin = 1; $bin <= $n; $bin++)
     {
@@ -113,8 +119,9 @@ sub generate_bin_packing_problem
         }
     }
 
-    # Explicitly say to the solvers that the variables are integers, i.e., no
-    # factional value is allowed.
+    # Constraint:
+    # Explicitly say to the solvers that the variables 
+    # are integers, i.e., no factional value is allowed.
     $model .= "\nGenerals\n";
     for(my $bin = 1; $bin <= $n; $bin++)
     {
