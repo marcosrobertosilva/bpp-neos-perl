@@ -1,4 +1,4 @@
-Executing on prod-exec-1.neos-server.org
+Executing on prod-exec-6.neos-server.org
 
 Welcome to IBM(R) ILOG(R) CPLEX(R) Interactive Optimizer 20.1.0.0
   with Simplex, Mixed Integer & Barrier Optimizers
@@ -56,7 +56,7 @@ Solution pool: 2 solutions saved.
 
 MIP - Integer optimal solution:  Objective =  3.0000000000e+00
 Solution time =    0.01 sec.  Iterations = 8  Nodes = 0
-Deterministic time = 0.29 ticks  (31.43 ticks/sec)
+Deterministic time = 0.29 ticks  (44.80 ticks/sec)
 
 CPLEX> Incumbent solution written to file 'soln.sol'.
 CPLEX> 
